@@ -1,6 +1,6 @@
-use actix_web::{get, HttpResponse};
+use actix_web::{get, Responder,HttpResponse};
 
-#[get("/")]
-pub async fn health_check_api() -> HttpResponse {
-    HttpResponse::Ok().body("OK มาก ๆ")
+#[get("/health_check")]
+pub async fn health_check_api() -> impl Responder {
+    HttpResponse::Ok()
 }
