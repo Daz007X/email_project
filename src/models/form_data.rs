@@ -2,6 +2,6 @@ use serde::Deserialize;
 
 #[derive(Deserialize)]
 pub struct FormData {
-    email: String,
-    name: String
+    pub email: String,
+    pub name: String
 }
