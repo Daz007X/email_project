@@ -2,10 +2,13 @@ use email_project::configuration::get_configuration;
 use email_project::startup::run;
 use std::net::TcpListener;
 use sqlx::PgPool;
+use env_logger::Env;
+
 
 
 #[actix_web::main]
 async fn main() -> Result<(), std::io::Error> {
+    env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
 
     // สร้าง Port และ Connection string DB 
     let configuration = get_configuration().expect("Failed to read configuration.");

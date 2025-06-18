@@ -1,4 +1,6 @@
 use actix_web::{ App, HttpServer, dev::Server, web};
+use actix_web::middleware::Logger;
+
 use std::net::TcpListener;
 use sqlx::PgPool;
 use crate::handler;
@@ -9,6 +11,7 @@ pub fn run(listener: TcpListener,db_pool: PgPool) -> Result<Server, std::io::Err
      let db_pool = web::Data::new(db_pool);
     let server = HttpServer::new(move || {
         App::new()
+            .wrap(Logger::default())
             .app_data(json_config_limit.clone())
             .app_data(db_pool.clone())
             .service(handler::sample_json::sample_json_api)
