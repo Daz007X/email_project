@@ -1,1 +1,13 @@
-{}
+{
+  "type": "lldb",
+  "request": "launch",
+  "name": "Debug with trace",
+  "program": "${workspaceFolder}/target/debug/your_binary_name",
+  "args": [],
+  "environment": [
+    {
+      "name": "RUST_LOG",
+      "value": "trace"
+    }
+  ]
+}
