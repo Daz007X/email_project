@@ -5,6 +5,17 @@ use chrono::Utc;
 use uuid::Uuid;
 use tracing::Instrument;
 
+
+#[tracing::instrument(
+    name = "Adding a new subscriber",
+    skip(form, pool),
+    fields(
+        request_id = %Uuid::new_v4(),
+        subscriber_email = %form.email,
+        subscriber_name = %form.name
+    )
+)]
+
 #[post("/subscriptions")]
 pub async fn subscriptions_api(form: web::Form<FormData>,pool :web::Data<PgPool>) -> impl Responder
 {   
