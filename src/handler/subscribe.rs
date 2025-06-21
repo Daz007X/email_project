@@ -35,7 +35,7 @@ pub async fn subscriptions_api(form: web::Form<FormData>,pool :web::Data<PgPool>
     {
         Ok(_) => 
             {
-                HttpResponse::Ok().finish()
+                HttpResponse::Created().body("subscriber data received successfully")
             },
         Err(e) => {
             tracing::error!("Failed to execute query: {:?}", e);

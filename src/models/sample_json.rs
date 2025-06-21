@@ -2,8 +2,8 @@ use serde::Deserialize;
 
 #[derive(Deserialize)]
 pub struct Info {
-    name: String,
-    email: String,
-    message: String,
+    pub name: String,
+    pub email: String,
+    pub message: String,
     
 }

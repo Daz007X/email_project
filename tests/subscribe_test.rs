@@ -2,7 +2,7 @@ mod common;
 use common::app;
 
 #[actix_web::test] 
-async fn subscribe_returns_a_200_valid_data(){
+async fn subscribe_returns_a_201_valid_data(){
     //init 
     let apps = app::spawn_app().await;
     let client = reqwest::Client::new();
@@ -14,7 +14,7 @@ async fn subscribe_returns_a_200_valid_data(){
         .send()
         .await
         .expect("Failed to execute request.");
-    assert_eq!(200, response.status().as_u16());
+    assert_eq!(201, response.status().as_u16());
 
     let saved = sqlx::query!("SELECT email, name FROM subscriptions WHERE email=\'goon@gmail.com\'",)
         .fetch_one(&apps.db_pool)

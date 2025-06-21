@@ -1,2 +1,2 @@
 [env]
-RUST_LOG = { value = "trace", force = true }
+RUST_LOG = { value = "debug", force = true }
